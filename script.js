@@ -6,11 +6,38 @@ window.addEventListener('scroll', () => {
   updateActiveNav();
 });
 
-// ===== HAMBURGER =====
+// ===== HAMBURGER & MOBILE NAV =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+const navCloseBtn = document.getElementById('navCloseBtn');
+const navBackdrop = document.getElementById('navBackdrop');
+
+function toggleMobileNav(force) {
+  const shouldOpen = typeof force === 'boolean' ? force : !navLinks.classList.contains('open');
+  navLinks.classList.toggle('open', shouldOpen);
+  hamburger.classList.toggle('active', shouldOpen);
+  hamburger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+  if (navBackdrop) {
+    navBackdrop.classList.toggle('open', shouldOpen);
+  }
+  document.body.style.overflow = shouldOpen ? 'hidden' : '';
+}
+
+hamburger.addEventListener('click', () => toggleMobileNav());
+if (navCloseBtn) {
+  navCloseBtn.addEventListener('click', () => toggleMobileNav(false));
+}
+if (navBackdrop) {
+  navBackdrop.addEventListener('click', () => toggleMobileNav(false));
+}
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', () => toggleMobileNav(false));
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    toggleMobileNav(false);
+  }
+});
 
 // ===== ACTIVE NAV =====
 function updateActiveNav() {
@@ -132,7 +159,7 @@ updateActiveNav();
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
   function getPreference() {
-    return localStorage.getItem('portfolio-theme') || 'system';
+    return localStorage.getItem('portfolio-theme') || 'dark';
   }
 
   function resolveTheme(pref) {
