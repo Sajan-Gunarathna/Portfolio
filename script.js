@@ -125,3 +125,53 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 
 // ===== SMOOTH ACTIVE NAV INIT =====
 updateActiveNav();
+
+// ===== THEME CONTROLLER =====
+(function initTheme() {
+  const themeBtns = document.querySelectorAll('.theme-switch-btn');
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function getPreference() {
+    return localStorage.getItem('portfolio-theme') || 'system';
+  }
+
+  function resolveTheme(pref) {
+    if (pref === 'system') {
+      return mediaQuery.matches ? 'dark' : 'light';
+    }
+    return pref;
+  }
+
+  function applyTheme(pref, save = true) {
+    const resolved = resolveTheme(pref);
+    document.documentElement.setAttribute('data-theme', resolved);
+    document.documentElement.setAttribute('data-theme-preference', pref);
+
+    if (save) {
+      try {
+        localStorage.setItem('portfolio-theme', pref);
+      } catch (e) {}
+    }
+
+    themeBtns.forEach(btn => {
+      const isSelected = btn.dataset.themeVal === pref;
+      btn.classList.toggle('active', isSelected);
+      btn.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+    });
+  }
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyTheme(btn.dataset.themeVal, true);
+    });
+  });
+
+  mediaQuery.addEventListener('change', () => {
+    if (getPreference() === 'system') {
+      applyTheme('system', false);
+    }
+  });
+
+  // Sync initial button active state
+  applyTheme(getPreference(), false);
+})();

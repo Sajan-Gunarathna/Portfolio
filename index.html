@@ -13,6 +13,17 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    (function () {
+      try {
+        const saved = localStorage.getItem('portfolio-theme') || 'system';
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const resolved = saved === 'system' ? (prefersDark ? 'dark' : 'light') : saved;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-preference', saved);
+      } catch (e) { }
+    })();
+  </script>
 </head>
 
 <body>
@@ -30,10 +41,51 @@
       <li><a href="#education" class="nav-link">Education</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
-    <a href="#contact" class="btn-nav">Hire Me</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-actions">
+      <!-- Theme Switcher -->
+      <div class="theme-switch-wrapper">
+        <div class="theme-switch" role="radiogroup" aria-label="Theme preference">
+          <button type="button" class="theme-switch-btn" data-theme-val="light" role="radio" aria-checked="false"
+            aria-label="Light theme" title="Light theme">
+            <svg class="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="M4.93 4.93l1.41 1.41"></path>
+              <path d="M17.66 17.66l1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="M4.93 19.07l1.41-1.41"></path>
+              <path d="M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <span class="theme-btn-label">Light</span>
+          </button>
+          <button type="button" class="theme-switch-btn active" data-theme-val="system" role="radio" aria-checked="true"
+            aria-label="System theme" title="System theme">
+            <svg class="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span class="theme-btn-label">System</span>
+          </button>
+          <button type="button" class="theme-switch-btn" data-theme-val="dark" role="radio" aria-checked="false"
+            aria-label="Dark theme" title="Dark theme">
+            <svg class="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="theme-btn-label">Dark</span>
+          </button>
+        </div>
+      </div>
+      <a href="#contact" class="btn-nav">Hire Me</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -263,7 +315,7 @@
             <div class="project-links">
               <a href="https://github.com/Sajan-Gunarathna/Heart-Disease-Prediction" class="plink"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
             </div>
           </div>
         </div>
@@ -284,7 +336,7 @@
             <div class="project-links">
               <a href="https://github.com/Sajan-Gunarathna/Flood-Risk-Prediction" class="plink"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Report</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Report</a> -->
             </div>
           </div>
         </div>
@@ -305,7 +357,7 @@
             <div class="project-links">
               <a href="https://github.com/Sajan-Gunarathna/Predicting-Deforestation-Hotspots" class="plink"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Demo</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Demo</a> -->
             </div>
           </div>
         </div>
@@ -325,7 +377,7 @@
             <div class="project-links">
               <a href="https://github.com/IneshS0154/Smart-E-Commerce-Platform-with-Predictive-Sales-Analytics"
                 class="plink"><i class="fab fa-github"></i> Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live</a> -->
             </div>
           </div>
         </div>
@@ -349,7 +401,7 @@
             <div class="project-links">
               <a href="https://github.com/Sajan-Gunarathna/Blood-Donation-System" class="plink"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live</a> -->
             </div>
           </div>
         </div>
@@ -373,9 +425,10 @@
               built interactive Power BI dashboards to track delay causes, airport congestion, and carrier performance.
             </p>
             <div class="project-links">
-              <a href="https://github.com/Sajan-Gunarathna" target="_blank" class="plink"><i class="fab fa-github"></i>
+              <a href="https://github.com/IneshS0154/DWBI-Flight-Delay-Analytics" target="_blank" class="plink"><i
+                  class="fab fa-github"></i>
                 Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-chart-pie"></i> Power BI</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-chart-pie"></i> Power BI</a> -->
             </div>
           </div>
         </div>
@@ -399,9 +452,10 @@
               property types, and developed an AUTO/ESCALATE decision framework to flag high-uncertainty valuations for
               human review.</p>
             <div class="project-links">
-              <a href="https://github.com/Sajan-Gunarathna" target="_blank" class="plink"><i class="fab fa-github"></i>
+              <a href="https://github.com/IneshS0154/Residential-Pricing-Decision-Support" target="_blank"
+                class="plink"><i class="fab fa-github"></i>
                 Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-file-alt"></i> Report</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-file-alt"></i> Report</a> -->
             </div>
           </div>
         </div>
@@ -425,9 +479,10 @@
               Early-Warning Repurchase System to identify customers likely to re-order within 90 days for targeted
               retention.</p>
             <div class="project-links">
-              <a href="https://github.com/Sajan-Gunarathna" target="_blank" class="plink"><i class="fab fa-github"></i>
+              <a href="https://github.com/IneshS0154/Customer-Repurchase-Prediction" target="_blank" class="plink"><i
+                  class="fab fa-github"></i>
                 Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-chart-bar"></i> Insights</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-chart-bar"></i> Insights</a> -->
             </div>
           </div>
         </div>
@@ -451,9 +506,10 @@
               Node.js/Express REST APIs, and implemented MongoDB data models to track recurring bills, status updates,
               and upcoming due dates.</p>
             <div class="project-links">
-              <a href="https://github.com/Sajan-Gunarathna" target="_blank" class="plink"><i class="fab fa-github"></i>
+              <a href="https://github.com/IneshS0154/Mudal-Finance-Management-App" target="_blank" class="plink"><i
+                  class="fab fa-github"></i>
                 Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-mobile-alt"></i> App Demo</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-mobile-alt"></i> App Demo</a> -->
             </div>
           </div>
         </div>
@@ -479,7 +535,7 @@
             <div class="project-links">
               <a href="https://github.com/Sajan-Gunarathna/DeegaLK" target="_blank" class="plink"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
             </div>
           </div>
         </div>
@@ -505,7 +561,7 @@
             <div class="project-links">
               <a href="https://github.com/Sajan-Gunarathna" target="_blank" class="plink"><i class="fab fa-github"></i>
                 Code</a>
-              <a href="#" class="plink plink-live"><i class="fas fa-robot"></i> Prototype</a>
+              <!-- <a href="#" class="plink plink-live"><i class="fas fa-robot"></i> Prototype</a> -->
             </div>
           </div>
         </div>
