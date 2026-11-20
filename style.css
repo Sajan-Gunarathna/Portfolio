@@ -1150,6 +1150,11 @@ ul { list-style: none; }
   color: var(--text2);
   width: 18px;
   flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.ci:hover .fa-whatsapp {
+  color: #25D366;
 }
 
 .ci strong {
