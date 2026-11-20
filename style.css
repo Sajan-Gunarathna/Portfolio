@@ -521,6 +521,11 @@ ul { list-style: none; }
   background: var(--surface2);
 }
 
+.social-icon:hover .fa-whatsapp,
+.footer-socials a:hover .fa-whatsapp {
+  color: #25D366;
+}
+
 /* HERO VISUAL */
 .hero-visual {
   flex: 1;
