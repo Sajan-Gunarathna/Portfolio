@@ -15,6 +15,7 @@ const navBackdrop = document.getElementById('navBackdrop');
 function openMobileNav() {
   navLinks.classList.add('open');
   if (navBackdrop) navBackdrop.classList.add('open');
+  if (navbar) navbar.classList.add('drawer-open');
   if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
 }
@@ -22,6 +23,7 @@ function openMobileNav() {
 function closeMobileNav() {
   navLinks.classList.remove('open');
   if (navBackdrop) navBackdrop.classList.remove('open');
+  if (navbar) navbar.classList.remove('drawer-open');
   if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
